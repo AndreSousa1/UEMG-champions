@@ -1,0 +1,10 @@
+equipe_id,equipe_nome,equipe_sigla,nickname,funcao,ordem,publicar
+A,EXEMPLO Fictício Alfa,EXA,exemplo_alfa1,titular,1,sim
+A,EXEMPLO Fictício Alfa,EXA,exemplo_alfa2,titular,2,sim
+A,EXEMPLO Fictício Alfa,EXA,exemplo_alfa3,titular,3,sim
+A,EXEMPLO Fictício Alfa,EXA,exemplo_alfa4,titular,4,sim
+A,EXEMPLO Fictício Alfa,EXA,exemplo_alfa5,titular,5,sim
+A,EXEMPLO Fictício Alfa,EXA,exemplo_alfa6,reserva,,sim
+B,EXEMPLO Fictício Bravo,EXB,exemplo_bravo1,titular,1,sim
+B,EXEMPLO Fictício Bravo,EXB,exemplo_bravo2,titular,2,sim
+B,EXEMPLO Fictício Bravo,EXB,exemplo_bravo3,titular,3,nao

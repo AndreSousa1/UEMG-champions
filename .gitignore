@@ -1,0 +1,12 @@
+node_modules
+dist
+*.local
+*.tsbuildinfo
+.DS_Store
+.vscode/*
+!.vscode/extensions.json
+
+# Exportações brutas de inscrições NUNCA devem entrar no repositório
+inscricoes-completas*.csv
+inscricoes-completas*.json
+*.bak
