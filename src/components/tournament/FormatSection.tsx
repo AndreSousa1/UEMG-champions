@@ -14,8 +14,6 @@ export function FormatSection() {
   return (
     <Section
       id="formato"
-      index="04"
-      eyebrow="Formato do campeonato"
       title="Como funciona"
       description={`${config.formatLabel}: quem perde está fora, quem vence avança. ${model.stats.totalTeams} equipes, ${model.stats.totalMatches} partidas e um campeão.`}
     >

@@ -20,7 +20,7 @@ export function ChampionHighlight() {
   const loserScore = score && winnerSlot ? score[winnerSlot === 1 ? 1 : 0] : null;
 
   return (
-    <section id="campeao" aria-labelledby="campeao-titulo" className="relative overflow-hidden py-16 sm:py-20">
+    <section id="campeao" aria-labelledby="campeao-titulo" className="relative overflow-hidden py-10 sm:py-14">
       <div className="pointer-events-none absolute inset-0" aria-hidden="true">
         <div className="absolute top-0 left-1/2 h-[32rem] w-[60rem] -translate-x-1/2 rounded-full bg-gold/[0.07] blur-3xl" />
         <div className="bg-tactical-grid absolute inset-0 [mask-image:radial-gradient(ellipse_50%_60%_at_50%_40%,black,transparent)]" />

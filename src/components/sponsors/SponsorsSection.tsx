@@ -14,8 +14,6 @@ export function SponsorsSection() {
   return (
     <Section
       id="patrocinadores"
-      index="05"
-      eyebrow="Patrocínio"
       title={alone ? 'Patrocinador oficial' : 'Patrocinadores oficiais'}
       description={`${alone ? 'Marca parceira' : 'Marcas parceiras'} do ${model.config.name} em ${model.config.year}.`}
     >

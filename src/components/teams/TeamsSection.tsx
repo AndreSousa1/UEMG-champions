@@ -9,8 +9,6 @@ export function TeamsSection() {
   return (
     <Section
       id="equipes"
-      index="03"
-      eyebrow="Equipes"
       title="Equipes inscritas"
       description={
         placeholders > 0

@@ -12,5 +12,6 @@ const SPONSORS_ITEM: NavItem = { id: 'patrocinadores', label: 'Patrocinadores' }
 
 /** Itens do menu; "Patrocinadores" só aparece quando há patrocinador ativo. */
 export function navItems(hasSponsors: boolean): readonly NavItem[] {
-  return hasSponsors ? [...NAV_ITEMS, SPONSORS_ITEM] : NAV_ITEMS;
+  if (!hasSponsors) return NAV_ITEMS;
+  return NAV_ITEMS.flatMap((item) => (item.id === 'formato' ? [SPONSORS_ITEM, item] : [item]));
 }

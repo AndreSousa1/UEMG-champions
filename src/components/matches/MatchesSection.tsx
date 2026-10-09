@@ -59,8 +59,6 @@ export function MatchesSection() {
   return (
     <Section
       id="partidas"
-      index="02"
-      eyebrow="Partidas e calendário"
       title="Agenda das partidas"
       description={
         <>

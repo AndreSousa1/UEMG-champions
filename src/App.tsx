@@ -37,8 +37,8 @@ export function App({ model, fixedNow }: AppProps) {
         <BracketSection />
         <MatchesSection />
         <TeamsSection />
-        <FormatSection />
         <SponsorsSection />
+        <FormatSection />
       </main>
       <Footer />
       <MatchDialog />

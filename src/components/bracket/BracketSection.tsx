@@ -29,8 +29,6 @@ export function BracketSection() {
   return (
     <Section
       id="chaveamento"
-      index="01"
-      eyebrow="Chaveamento"
       title="Caminho até o título"
       description={
         <>
