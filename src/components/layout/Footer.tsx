@@ -1,7 +1,7 @@
 import { useTournament } from '../../state/context';
 import { Logo } from '../brand/Logo';
 import { ExternalLinks } from '../ui/ExternalLinks';
-import { NAV_ITEMS } from './nav';
+import { navItems } from './nav';
 
 export function Footer() {
   const { model } = useTournament();
@@ -18,12 +18,26 @@ export function Footer() {
           </p>
           {organization.name && <p className="mt-4 text-sm font-semibold text-fg">{organization.name}</p>}
           {organization.description && <p className="mt-1 max-w-sm text-sm text-fg-muted">{organization.description}</p>}
+          {model.sponsors.length > 0 && (
+            <div className="mt-6">
+              <h3 className="eyebrow mb-3">Patrocínio</h3>
+              <ul className="flex flex-wrap gap-2">
+                {model.sponsors.map((sponsor) => (
+                  <li key={sponsor.id}>
+                    <a href="#patrocinadores" className="chip px-2.5 py-1 text-fg transition hover:border-accent/40 hover:text-accent">
+                      {sponsor.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
 
         <nav aria-label="Rodapé">
           <h3 className="eyebrow mb-4">Navegação</h3>
           <ul className="space-y-2.5">
-            {NAV_ITEMS.map((item) => (
+            {navItems(model.sponsors.length > 0).map((item) => (
               <li key={item.id}>
                 <a href={`#${item.id}`} className="text-sm text-fg-muted transition hover:text-accent">
                   {item.label}

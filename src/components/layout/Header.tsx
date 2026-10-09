@@ -1,7 +1,8 @@
 import { Menu, X } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import { useTournament } from '../../state/context';
 import { Logo } from '../brand/Logo';
-import { NAV_ITEMS } from './nav';
+import { navItems } from './nav';
 
 function useActiveSection(ids: readonly string[]): string {
   const [active, setActive] = useState<string>(ids[0] ?? '');
@@ -21,12 +22,13 @@ function useActiveSection(ids: readonly string[]): string {
   return active;
 }
 
-const SECTION_IDS = NAV_ITEMS.map((item) => item.id);
-
 export function Header() {
+  const { model } = useTournament();
+  const items = useMemo(() => navItems(model.sponsors.length > 0), [model.sponsors.length]);
+  const sectionIds = useMemo(() => items.map((item) => item.id), [items]);
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(() => typeof window !== 'undefined' && window.scrollY > 8);
-  const active = useActiveSection(SECTION_IDS);
+  const active = useActiveSection(sectionIds);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -52,14 +54,14 @@ export function Header() {
           <Logo placement="header" />
         </a>
 
-        <nav aria-label="Seções" className="hidden md:block">
+        <nav aria-label="Seções" className="hidden lg:block">
           <ul className="flex items-center gap-1">
-            {NAV_ITEMS.map((item) => (
+            {items.map((item) => (
               <li key={item.id}>
                 <a
                   href={`#${item.id}`}
                   aria-current={active === item.id ? 'location' : undefined}
-                  className={`relative block px-3 py-2 font-display text-[0.92rem] font-semibold tracking-[0.14em] uppercase transition-colors ${
+                  className={`relative block px-3 py-2 whitespace-nowrap font-display text-[0.92rem] font-semibold tracking-[0.14em] uppercase transition-colors ${
                     active === item.id ? 'text-fg' : 'text-fg-dim hover:text-fg'
                   }`}
                 >
@@ -78,7 +80,7 @@ export function Header() {
 
         <button
           type="button"
-          className="-mr-2 rounded-lg p-2 text-fg md:hidden"
+          className="-mr-2 rounded-lg p-2 text-fg lg:hidden"
           aria-expanded={open}
           aria-controls="menu-mobile"
           aria-label={open ? 'Fechar menu' : 'Abrir menu'}
@@ -92,10 +94,10 @@ export function Header() {
         id="menu-mobile"
         aria-label="Seções"
         hidden={!open}
-        className="border-b border-line bg-ink-950/95 backdrop-blur-xl md:hidden"
+        className="border-b border-line bg-ink-950/95 backdrop-blur-xl lg:hidden"
       >
         <ul className="mx-auto flex max-w-7xl flex-col px-4 py-3">
-          {NAV_ITEMS.map((item, i) => (
+          {items.map((item, i) => (
             <li key={item.id}>
               <a
                 href={`#${item.id}`}

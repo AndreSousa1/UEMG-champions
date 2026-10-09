@@ -2,6 +2,7 @@ import { readdirSync, readFileSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
+import { sponsors } from '../data/sponsors';
 import { teams } from '../data/teams';
 import { SENSITIVE_VALUE_PATTERNS } from '../lib/privacy';
 import { importTeams, renderTeamsFile } from '../lib/team-import';
@@ -26,12 +27,33 @@ describe('privacidade dos dados públicos', () => {
   });
 
   it('os arquivos públicos de dados e configuração não têm CPF, matrícula, e-mail ou telefone', () => {
-    const files = [...filesIn(join(root, 'src/data')), join(root, 'src/config/tournament.config.ts'), ...filesIn(join(root, 'public'))];
+    // sponsors.ts contém o contato comercial do patrocinador e é verificado no teste seguinte.
+    const files = [
+      ...filesIn(join(root, 'src/data')).filter((f) => !f.endsWith('sponsors.ts')),
+      join(root, 'src/config/tournament.config.ts'),
+      ...filesIn(join(root, 'public')),
+    ];
     for (const file of files.filter((f) => /\.(ts|json|csv|txt|html)$/.test(f))) {
       const text = readFileSync(file, 'utf8');
       expect(text, file).not.toMatch(FORBIDDEN_KEYS);
       for (const { label, pattern } of SENSITIVE_VALUE_PATTERNS) {
         expect(pattern.test(text), `${file} parece conter ${label}`).toBe(false);
+      }
+    }
+  });
+
+  it('patrocinadores só têm telefone no campo comercial de WhatsApp e nenhum CPF ou e-mail', () => {
+    for (const sponsor of sponsors) {
+      const { contactLinks, ...rest } = sponsor;
+      const text = JSON.stringify(rest);
+      for (const { label, pattern } of SENSITIVE_VALUE_PATTERNS) {
+        expect(pattern.test(text), `${sponsor.id} parece conter ${label}`).toBe(false);
+      }
+      for (const contact of contactLinks) {
+        const withoutPhone = contact.type === 'whatsapp' ? { ...contact, phone: '' } : contact;
+        for (const { label, pattern } of SENSITIVE_VALUE_PATTERNS) {
+          expect(pattern.test(JSON.stringify(withoutPhone)), `${sponsor.id}/${contact.id} parece conter ${label}`).toBe(false);
+        }
       }
     }
   });

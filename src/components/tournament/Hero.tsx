@@ -2,6 +2,7 @@ import { ArrowRight, CalendarRange, Swords, Trophy, Users } from 'lucide-react';
 import { eventPeriod } from '../../lib/display';
 import { useLiveStatus, useTournament } from '../../state/context';
 import { Logo } from '../brand/Logo';
+import { SponsorTicker } from '../sponsors/SponsorTicker';
 import { HeroBackdrop } from './HeroBackdrop';
 import { NextMatchCard } from './NextMatchCard';
 import { PhaseBadge } from './PhaseBadge';
@@ -46,10 +47,7 @@ export function Hero() {
           <h1 id="inicio-titulo" className="mt-3">
             <Logo placement="hero" />
           </h1>
-          <p className="mt-6 max-w-xl text-base leading-relaxed text-fg-muted sm:text-lg">
-            {stats.totalTeams} equipes, {stats.totalMatches} partidas em {config.formatLabel.toLowerCase()} e{' '}
-            {period.dayCount} {period.dayCount === 1 ? 'dia' : 'dias'} de disputa, de {period.long}.
-          </p>
+          <SponsorTicker className="mt-6" />
 
           <dl className="mt-9 grid grid-cols-2 border-y border-line sm:grid-cols-4">
             {facts.map((fact, i) => (

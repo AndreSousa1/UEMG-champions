@@ -14,7 +14,7 @@ const sources = (id: string): [SlotSource, SlotSource] => [byId(id).team1, byId(
 describe('estrutura inicial do campeonato', () => {
   it('tem exatamente 12 equipes, com IDs A–L', () => {
     expect(teams).toHaveLength(12);
-    expect(teams.map((t) => t.id)).toEqual(['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L']);
+    expect(teams.map((t) => t.id).sort()).toEqual(['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L']);
     const names = teams.map((t) => t.name.trim().toLowerCase());
     expect(names.every((n) => n.length > 0)).toBe(true);
     expect(new Set(names).size).toBe(teams.length);

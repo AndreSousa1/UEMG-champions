@@ -6,7 +6,9 @@ import type {
   TournamentConfig,
   ValidationIssue,
 } from '../types/tournament';
+import type { Sponsor } from '../types/sponsor';
 import { resolveBracket } from './bracket';
+import { activeSponsors } from './sponsors';
 import { computeSchedule, findScheduleIssues } from './schedule';
 import {
   computeStandings,
@@ -29,6 +31,8 @@ export interface TournamentModel {
   champion: ChampionInfo | null;
   stats: TournamentStats;
   issues: readonly ValidationIssue[];
+  /** Patrocinadores ativos, já ordenados por `displayOrder`. */
+  sponsors: readonly Sponsor[];
 }
 
 /**
@@ -40,6 +44,7 @@ export function buildTournament(
   config: TournamentConfig,
   teams: readonly TeamDefinition[],
   matches: readonly MatchDefinition[],
+  sponsors: readonly Sponsor[] = [],
 ): TournamentModel {
   const configIssues = validateConfig(config);
   const scheduleUsable = !configIssues.some((i) => i.severity === 'error');
@@ -66,6 +71,7 @@ export function buildTournament(
     champion: getChampion(ordered),
     stats: computeStats(teams, ordered, standings),
     issues: dedupe(issues),
+    sponsors: activeSponsors(sponsors),
   };
 }
 

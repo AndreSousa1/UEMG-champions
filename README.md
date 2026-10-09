@@ -21,10 +21,11 @@ Feito com React + TypeScript (strict) + Vite + Tailwind CSS. Não há backend: t
 9. [Registrar resultados](#9-registrar-resultados)
 10. [Alterar o chaveamento](#10-alterar-o-chaveamento)
 11. [Configurar links públicos](#11-configurar-links-públicos)
-12. [Fase atual e simulação de data](#12-fase-atual-e-simulação-de-data)
-13. [Gerar a versão de produção](#13-gerar-a-versão-de-produção)
-14. [Testes e verificações](#14-testes-e-verificações)
-15. [Estrutura de pastas](#15-estrutura-de-pastas)
+12. [Patrocinadores](#12-patrocinadores)
+13. [Fase atual e simulação de data](#13-fase-atual-e-simulação-de-data)
+14. [Gerar a versão de produção](#14-gerar-a-versão-de-produção)
+15. [Testes e verificações](#15-testes-e-verificações)
+16. [Estrutura de pastas](#16-estrutura-de-pastas)
 
 ---
 
@@ -47,6 +48,8 @@ Abra o endereço mostrado no terminal (normalmente http://localhost:5173). As al
 | Nomes, siglas, logos, jogadores e links das equipes | `src/data/teams.ts` |
 | Confrontos, dias, ordem, horários fixos e **resultados** | `src/data/matches.ts` |
 | Imagem do logo do campeonato | `public/assets/uemg-champions-logo.png` |
+| Patrocinadores (textos, serviços, links, ordem, destaque) | `src/data/sponsors.ts` |
+| Logos dos patrocinadores | `public/assets/patrocinadores/` |
 
 Os componentes visuais não têm nenhum confronto, data ou nome fixo no código: tudo vem desses arquivos. Se algo estiver inconsistente (ex.: equipe repetida, resultado impossível), o TypeScript acusa o erro ou o site mostra um aviso "Dados do campeonato em revisão" no topo, em vez de exibir informação errada.
 
@@ -310,14 +313,67 @@ publicLinks: [{ label: 'Instagram', url: 'https://instagram.com/...', kind: 'soc
 
 `kind` pode ser `'site'`, `'social'`, `'stream'` ou `'other'`. Apenas URLs `https://` ou `http://` são aceitas; outras (ex.: `javascript:`) geram aviso de inconsistência e não são exibidas.
 
-## 12. Fase atual e simulação de data
+## 12. Patrocinadores
+
+Os patrocinadores ficam em **`src/data/sponsors.ts`** e as logos em **`public/assets/patrocinadores/`**. A partir dessa lista o site monta automaticamente:
+
+- a seção "Patrocinador oficial" / "Patrocinadores oficiais", antes do rodapé;
+- o nome dos patrocinadores sendo escrito em loop no topo da página (estático para quem ativou "reduzir movimento");
+- o item "Patrocinadores" no menu e a menção no rodapé.
+
+Nada disso aparece quando não há patrocinador ativo.
+
+### Adicionar um patrocinador
+
+1. Salve a logo em `public/assets/patrocinadores/` com um nome sem espaços e em minúsculas (ex.: `loja-exemplo.png`).
+2. Copie o bloco da N1 Skins em `sponsors.ts` e ajuste os campos:
+
+```ts
+{
+  id: 'loja-exemplo',                     // único, minúsculas e hífens
+  name: 'Loja Exemplo',
+  logo: 'assets/patrocinadores/loja-exemplo.png', // ou null (mostra o nome)
+  category: 'Periféricos',
+  description: 'Descrição institucional curta.',
+  about: 'Parágrafo complementar opcional.', // opcional
+  services: [{ id: 'venda', title: 'Venda', description: 'Texto curto.', icon: 'sell' }],
+  paymentMethods: [{ id: 'pix', label: 'PIX', kind: 'pix' }],
+  socialLinks: [{ id: 'instagram', network: 'instagram', label: 'Visitar Instagram', url: 'https://www.instagram.com/...', handle: '@perfil' }],
+  contactLinks: [],
+  isActive: true,
+  displayOrder: 2,   // ordem de exibição
+  featured: false,   // true = cartão grande em largura total
+  displaySettings: { logoBackground: '#000000' }, // cor atrás da logo (opcional)
+},
+```
+
+- **Ordem:** `displayOrder` (menor primeiro).
+- **Destaque:** `featured: true` gera o cartão grande; os demais aparecem em cartões menores, centralizados, em até 3 colunas. Com um único patrocinador, ele sempre usa o cartão grande.
+- **Ocultar sem apagar:** `isActive: false`.
+- **Campos opcionais:** listas vazias (`services`, `paymentMethods`, `socialLinks`, `contactLinks`) simplesmente não aparecem; sem `logo`, o cartão mostra o nome da marca.
+- **Ícones disponíveis:** serviços `'buy' | 'trade' | 'sell' | 'delivery' | 'support' | 'generic'`; pagamentos `'pix' | 'crypto' | 'card' | 'cash' | 'other'`; redes `'instagram' | 'site' | 'youtube' | 'twitch' | 'x' | 'tiktok' | 'other'`.
+- `displaySettings` também aceita `logoAlt`, `logoPadding`, `showDescription`, `showServices` e `showPaymentMethods`.
+- Links precisam usar `https://`; os demais são ocultados.
+
+### WhatsApp da N1 Skins (pendente)
+
+O número recebido, `(37) 9867-4878`, tem 8 dígitos depois do DDD e começa com 9. Celulares brasileiros têm 9 dígitos depois do DDD, então parece faltar um dígito. Por isso o botão **"Fale pelo WhatsApp" está oculto**. Quando a organização confirmar o número completo, edite o contato em `sponsors.ts`:
+
+```ts
+phone: '(37) 9XXXX-XXXX', // número completo confirmado
+confirmed: true,
+```
+
+O link `https://wa.me/55…` é gerado automaticamente, removendo a formatação, acrescentando o código do Brasil (55) e codificando a mensagem inicial (`message`). Mesmo com `confirmed: true`, números incompletos continuam sem botão.
+
+## 13. Fase atual e simulação de data
 
 A fase exibida (Não iniciado / Em andamento / Concluído) é calculada pela data atual e pelos resultados. Em `tournament.config.ts`:
 
 - `phaseOverride: 'not-started' | 'in-progress' | 'completed' | null` — força a fase exibida (use `null` para o cálculo automático).
 - `clockOverride: '2026-10-13T20:30:00-03:00' | null` — simula o relógio do site para conferir como ele ficará num dado momento. **Volte para `null` antes de publicar.**
 
-## 13. Gerar a versão de produção
+## 14. Gerar a versão de produção
 
 ```bash
 npm run build     # gera a pasta dist/
@@ -326,7 +382,7 @@ npm run preview   # serve dist/ localmente para conferência
 
 A pasta `dist/` é estática e pode ser publicada em qualquer hospedagem de arquivos (GitHub Pages, Netlify, Vercel, servidor da universidade etc.). Os caminhos são relativos, então funciona também em subpastas.
 
-## 14. Testes e verificações
+## 15. Testes e verificações
 
 ```bash
 npm run typecheck  # TypeScript
@@ -335,9 +391,9 @@ npm test           # testes automatizados (Vitest)
 npm run check      # tudo acima + build
 ```
 
-Os testes cobrem: 12 equipes e 11 partidas; nenhuma equipe em dois jogos da mesma rodada; confrontos exatos da estrutura; avanço automático dos vencedores; regras MD1/MD3; partidas não encerradas não avançam ninguém; resultados inválidos; horários calculados (19/20/21/22, 19:00 e 20:30, 19:00); horário fixo; fuso de Brasília; situação das equipes; campeão só após a final; e ausência de CPF, e-mail, telefone e campos sensíveis nos dados públicos e no HTML gerado.
+Os testes cobrem: 12 equipes e 11 partidas; nenhuma equipe em dois jogos da mesma rodada; confrontos exatos da estrutura; avanço automático dos vencedores; regras MD1/MD3; partidas não encerradas não avançam ninguém; resultados inválidos; horários calculados (19/20/21/22, 19:00 e 20:30, 19:00); horário fixo; fuso de Brasília; situação das equipes; campeão só após a final; patrocinadores (exibição, logo, links, ordem, inativos, vários cartões, campos ausentes, seção oculta sem patrocinadores e bloqueio de WhatsApp incompleto); e ausência de CPF, e-mail, telefone e campos sensíveis nos dados públicos e no HTML gerado.
 
-## 15. Estrutura de pastas
+## 16. Estrutura de pastas
 
 ```
 public/
@@ -348,7 +404,8 @@ src/
   config/tournament.config.ts   ← configuração geral e agenda
   data/teams.ts                 ← equipes
   data/matches.ts               ← partidas e resultados
-  types/tournament.ts           ← tipos
+  data/sponsors.ts              ← patrocinadores
+  types/tournament.ts, sponsor.ts ← tipos
   lib/
     bracket.ts                  ← resolução do chaveamento e validação estrutural
     schedule.ts                 ← cálculo de horários
@@ -356,6 +413,7 @@ src/
     results.ts                  ← regras MD1/MD3/W.O.
     validation.ts, privacy.ts   ← validação de dados e bloqueio de dados sensíveis
     team-import.ts              ← lógica do importador
+    sponsors.ts                 ← ordem, filtro de ativos e validação do WhatsApp
     ...
   components/                   ← interface (cabeçalho, chaveamento, partidas, equipes etc.)
   tests/                        ← testes automatizados
@@ -370,3 +428,4 @@ src/
 - Nome/descrição da organização para o rodapé e links oficiais (redes sociais, transmissão).
 - Confirmação da estrutura das quartas (atual, assimétrica) ou adoção da alternativa equilibrada.
 - Lista de mapas, se quiser exibi-los nos resultados.
+- Número completo do WhatsApp da N1 Skins (o recebido parece estar sem o nono dígito).

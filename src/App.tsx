@@ -4,6 +4,7 @@ import { Header } from './components/layout/Header';
 import { IssuesBanner } from './components/layout/IssuesBanner';
 import { MatchDialog } from './components/matches/MatchDialog';
 import { MatchesSection } from './components/matches/MatchesSection';
+import { SponsorsSection } from './components/sponsors/SponsorsSection';
 import { TeamDialog } from './components/teams/TeamDialog';
 import { TeamsSection } from './components/teams/TeamsSection';
 import { ChampionHighlight } from './components/tournament/ChampionHighlight';
@@ -37,6 +38,7 @@ export function App({ model, fixedNow }: AppProps) {
         <MatchesSection />
         <TeamsSection />
         <FormatSection />
+        <SponsorsSection />
       </main>
       <Footer />
       <MatchDialog />

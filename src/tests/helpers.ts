@@ -1,7 +1,9 @@
 import { tournamentConfig } from '../config/tournament.config';
 import { matches } from '../data/matches';
+import { sponsors } from '../data/sponsors';
 import { teams } from '../data/teams';
 import { buildTournament } from '../lib/tournament';
+import type { Sponsor } from '../types/sponsor';
 import type { MapResult, MatchDefinition, TournamentConfig } from '../types/tournament';
 
 export const config: TournamentConfig = tournamentConfig;
@@ -25,8 +27,12 @@ export function md3Win(slot: 1 | 2): ResultPatch {
   return { status: 'completed', maps: [w(slot), w(other), w(slot)] };
 }
 
-export function build(matchList: readonly MatchDefinition[] = matches, cfg: TournamentConfig = config) {
-  return buildTournament(cfg, teams, matchList);
+export function build(
+  matchList: readonly MatchDefinition[] = matches,
+  cfg: TournamentConfig = config,
+  sponsorList: readonly Sponsor[] = sponsors,
+) {
+  return buildTournament(cfg, teams, matchList, sponsorList);
 }
 
 export function withSchedule(patch: Partial<TournamentConfig['schedule']>): TournamentConfig {
