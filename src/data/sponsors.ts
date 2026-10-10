@@ -29,38 +29,38 @@ export const sponsors = [
     logo: 'assets/patrocinadores/n1-skins-logo.jpeg',
     category: 'Skins de Counter-Strike 2',
     description:
-      'Loja especializada no mercado de negociação de itens e skins de Counter-Strike 2, com compra, venda, encomendas e opções de upgrade de itens. A divulgação e o atendimento são feitos principalmente pelo Instagram e pelo WhatsApp.',
+      'Sua loja oficial de skins de CS2. Compre, venda, encomende e faça o upgrade do seu inventário de forma rápida e 100% segura pelo Instagram e WhatsApp[cite: 1].',
     about:
-      'No Instagram, a loja publica conteúdos sobre negociação segura (incluindo os destaques “Tradeprotected”), feedbacks de clientes, skins em jogo, ofertas de compra, venda e upgrade e referências à presença em eventos do cenário, como a IEM Rio.',
+      'Líder em transparência e segurança no CS2: acompanhe gameplays reais das skins, feedbacks de clientes satisfeitos e nossa presença nos maiores eventos do cenário, como a IEM Rio[cite: 1].',
     services: [
       {
         id: 'compra',
-        title: 'Compra de skins',
-        description: 'Compra de skins dos jogadores, com pagamento rápido via PIX ou criptomoedas, conforme informado pela loja.',
+        title: 'Venda suas Skins e receba na hora',
+        description: 'Transforme suas skins do CS2 em dinheiro sem enrolação! Pagamento instantâneo via PIX ou Criptomoedas[cite: 1].',
         icon: 'buy',
       },
       {
         id: 'upgrade',
-        title: 'Upgrade e troca',
-        description: 'Use uma skin atual como parte do pagamento para obter um item de maior valor.',
+        title: 'Upgrade & Troca de Inventário',
+        description: 'Não jogue "Eco" de skin! Entregue seus itens atuais como parte do pagamento para pegar uma skin ainda melhor[cite: 1].',
         icon: 'trade',
       },
       {
         id: 'venda',
-        title: 'Venda e encomendas',
-        description: 'Venda e encomenda de skins de CS2, com entrega na conta Steam do comprador, conforme as condições da negociação.',
+        title: 'Venda & Encomendas Exclusivas',
+        description: 'Achamos qualquer skin do CS2 para você com entrega direta na sua conta Steam e suporte personalizado[cite: 1].',
         icon: 'sell',
       },
     ],
     paymentMethods: [
-      { id: 'pix', label: 'PIX', kind: 'pix' },
+      { id: 'pix', label: 'PIX Instantâneo', kind: 'pix' },
       { id: 'cripto', label: 'Criptomoedas', kind: 'crypto' },
     ],
     socialLinks: [
       {
         id: 'instagram',
         network: 'instagram',
-        label: 'Conheça a N1 Skins',
+        label: 'Siga a @n1skins no Instagram',
         url: 'https://www.instagram.com/n1skins?obrf=dXhoaXV1cnNrYnc0',
         handle: '@n1skins',
       },
@@ -69,12 +69,12 @@ export const sponsors = [
       {
         id: 'whatsapp',
         type: 'whatsapp',
-        label: 'Fale pelo WhatsApp',
+        label: 'Chame no WhatsApp e faça sua cotação',
         // Número recebido com 8 dígitos após o DDD — parece faltar o 9 inicial
         // de celular. Confirme o número completo antes de marcar `confirmed: true`.
         phone: '(37) 9867-4878',
         confirmed: false,
-        message: 'Olá! Conheci a N1 Skins pelo campeonato UEMG champions e gostaria de obter mais informações.',
+        message: 'Olá! Vim pelo UEMG Champions e quero fazer uma cotação de skins com a N1 Skins!',
       },
     ],
     isActive: true,
