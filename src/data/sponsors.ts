@@ -29,26 +29,26 @@ export const sponsors = [
     logo: 'assets/patrocinadores/n1-skins-logo.jpeg',
     category: 'Skins de Counter-Strike 2',
     description:
-      'Sua loja oficial de skins de CS2. Compre, venda, encomende e faça o upgrade do seu inventário de forma rápida e 100% segura pelo Instagram e WhatsApp[cite: 1].',
+      'Sua loja oficial de skins de CS2. Compre, venda, encomende e faça o upgrade do seu inventário de forma rápida e 100% segura pelo Instagram e WhatsApp.',
     about:
-      'Líder em transparência e segurança no CS2: acompanhe gameplays reais das skins, feedbacks de clientes satisfeitos e nossa presença nos maiores eventos do cenário, como a IEM Rio[cite: 1].',
+      'Líder em transparência e segurança no CS2: acompanhe gameplays reais das skins, feedbacks de clientes satisfeitos e nossa presença nos maiores eventos do cenário, como a IEM Rio.',
     services: [
       {
         id: 'compra',
         title: 'Venda suas Skins e receba na hora',
-        description: 'Transforme suas skins do CS2 em dinheiro sem enrolação! Pagamento instantâneo via PIX ou Criptomoedas[cite: 1].',
+        description: 'Transforme suas skins do CS2 em dinheiro sem enrolação! Pagamento instantâneo via PIX ou Criptomoedas.',
         icon: 'buy',
       },
       {
         id: 'upgrade',
         title: 'Upgrade & Troca de Inventário',
-        description: 'Não jogue "Eco" de skin! Entregue seus itens atuais como parte do pagamento para pegar uma skin ainda melhor[cite: 1].',
+        description: 'Não jogue "Eco" de skin! Entregue seus itens atuais como parte do pagamento para pegar uma skin ainda melhor.',
         icon: 'trade',
       },
       {
         id: 'venda',
         title: 'Venda & Encomendas Exclusivas',
-        description: 'Achamos qualquer skin do CS2 para você com entrega direta na sua conta Steam e suporte personalizado[cite: 1].',
+        description: 'Achamos qualquer skin do CS2 para você com entrega direta na sua conta Steam e suporte personalizado.',
         icon: 'sell',
       },
     ],
