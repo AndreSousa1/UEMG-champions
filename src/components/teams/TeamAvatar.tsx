@@ -25,7 +25,7 @@ export function TeamAvatar({ team, size = 'md', dimmed = false }: { team: TeamDe
       aria-hidden="true"
     >
       {src && status === 'loaded' ? (
-        <img src={src} alt="" className="size-full object-contain p-[12%]" />
+        <img src={src} alt="" className="size-full object-cover" />
       ) : (
         <>
           <span className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgb(255_255_255/0.08),transparent_60%)]" />
