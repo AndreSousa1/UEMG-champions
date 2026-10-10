@@ -47,13 +47,12 @@ export function TeamCard({ team }: { team: TeamDefinition }) {
         </span>
 
         <div className="relative flex items-start justify-between gap-3">
-          <TeamAvatar team={team} size="lg" dimmed={eliminated} />
+          <TeamAvatar team={team} size="card" dimmed={eliminated} />
           {standing && <TeamStatusBadge standing={standing} />}
         </div>
 
         <div className="relative mt-4">
-          <span className="text-[0.68rem] font-semibold tracking-[0.18em] text-fg-dim uppercase">Vaga {team.id}</span>
-          <h3 className="mt-0.5 truncate font-display text-2xl font-bold uppercase" title={team.name}>
+          <h3 className="truncate font-display text-2xl font-bold uppercase" title={team.name}>
             {team.name}
           </h3>
         </div>

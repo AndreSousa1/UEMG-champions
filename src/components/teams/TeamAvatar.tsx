@@ -8,6 +8,8 @@ const SIZES = {
   md: 'size-12 text-base rounded-lg',
   lg: 'size-16 text-xl rounded-xl',
   xl: 'size-24 text-3xl rounded-2xl',
+  /** Card da equipe: 80% maior que `lg` (64px → 115px). */
+  card: 'size-[115px] text-4xl rounded-2xl',
 } as const;
 
 type AvatarSize = keyof typeof SIZES;
