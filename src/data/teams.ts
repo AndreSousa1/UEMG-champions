@@ -146,7 +146,7 @@ export const teams = [
     id: 'L',
     name: 'Arsenal CS',
     shortName: 'Arsenal',
-    logo: null,
+    logo: 'assets/teams/Arsenal CS.jpeg',
     isPlaceholder: false,
     players: [{ nickname: 'r0s' }, { nickname: 'V1TINHO' }, { nickname: 'ACR' }, { nickname: 'Dimitri' }, { nickname: 'Drt' }],
     reserve: { nickname: 'MCS' },
