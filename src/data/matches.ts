@@ -38,7 +38,7 @@ export const matches = defineMatches<TeamId, ScheduleDate>()([
 
   // 13/10 — Quartas de final (MD1)
   { id: 'QF-01', stage: 'quarterfinal', format: 'MD1', date: '2026-10-13', order: 4, team1: { winnerOf: 'PRE-01' }, team2: { winnerOf: 'PRE-02' }, status: 'scheduled', maps: [] },
-  { id: 'QF-02', stage: 'quarterfinal', format: 'MD1', date: '2026-10-13', order: 3, team1: { winnerOf: 'PRE-03' }, team2: { winnerOf: 'PRE-04' }, status: 'scheduled', maps: [] },
+  { id: 'QF-02', stage: 'quarterfinal', format: 'MD1', date: '2026-10-13', order: 2, team1: { winnerOf: 'PRE-03' }, team2: { winnerOf: 'PRE-04' }, status: 'scheduled', maps: [] },
   { id: 'QF-03', stage: 'quarterfinal', format: 'MD1', date: '2026-10-12', order: 2, team1: { team: 'I' }, team2: { team: 'J' }, status: 'scheduled', maps: [] },
   { id: 'QF-04', stage: 'quarterfinal', format: 'MD1', date: '2026-10-13', order: 1, team1: { team: 'K' }, team2: { team: 'L' }, status: 'scheduled', maps: [] },
 
