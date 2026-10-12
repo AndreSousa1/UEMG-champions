@@ -69,7 +69,7 @@ export const teams = [
     id: 'C',
     name: 'Matilha FC',
     shortName: 'Matilha',
-    logo: 'assets/teams/Matilha.jpeg',
+    logo: 'assets/teams/Matilha FC.jpeg',
     isPlaceholder: false,
     players: [{ nickname: 'Down' }, { nickname: 'MATH FGC' }, { nickname: 'mecrrrrrrrajada' }, { nickname: 'Souza' }, { nickname: 'RUSSIN YAGAMA' }],
     reserve: null,
