@@ -88,7 +88,7 @@ export const teams = [
     displaySettings: {},
   },
   {
-    id: 'D',
+    id: 'B',
     name: 'Esquema de Aposta',
     shortName: 'Esquema',
     logo: 'assets/teams/Esquema de Aposta.jpeg',
@@ -121,7 +121,7 @@ export const teams = [
     displaySettings: {},
   },
   {
-    id: 'B',
+    id: 'D',
     name: 'Divine Forge',
     shortName: 'Divine',
     logo: 'assets/teams/Divine Forge.jpeg',
