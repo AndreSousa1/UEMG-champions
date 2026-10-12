@@ -32,15 +32,15 @@ import type { TeamId } from './teams';
 export const matches = defineMatches<TeamId, ScheduleDate>()([
   // 12/10 — Fase preliminar (MD1)
   { id: 'PRE-01', stage: 'preliminary', format: 'MD1', date: '2026-10-12', order: 1, team1: { team: 'A' }, team2: { team: 'B' }, status: 'scheduled', maps: [] },
-  { id: 'PRE-02', stage: 'preliminary', format: 'MD1', date: '2026-10-13', order: 1, team1: { team: 'C' }, team2: { team: 'D' }, status: 'scheduled', maps: [] },
+  { id: 'PRE-02', stage: 'preliminary', format: 'MD1', date: '2026-10-13', order: 3, team1: { team: 'C' }, team2: { team: 'D' }, status: 'scheduled', maps: [] },
   { id: 'PRE-03', stage: 'preliminary', format: 'MD1', date: '2026-10-12', order: 3, team1: { team: 'E' }, team2: { team: 'F' }, status: 'scheduled', maps: [] },
   { id: 'PRE-04', stage: 'preliminary', format: 'MD1', date: '2026-10-12', order: 4, team1: { team: 'G' }, team2: { team: 'H' }, status: 'scheduled', maps: [] },
 
   // 13/10 — Quartas de final (MD1)
-  { id: 'QF-01', stage: 'quarterfinal', format: 'MD1', date: '2026-10-13', order: 3, team1: { winnerOf: 'PRE-01' }, team2: { winnerOf: 'PRE-02' }, status: 'scheduled', maps: [] },
-  { id: 'QF-02', stage: 'quarterfinal', format: 'MD1', date: '2026-10-13', order: 4, team1: { winnerOf: 'PRE-03' }, team2: { winnerOf: 'PRE-04' }, status: 'scheduled', maps: [] },
+  { id: 'QF-01', stage: 'quarterfinal', format: 'MD1', date: '2026-10-13', order: 4, team1: { winnerOf: 'PRE-01' }, team2: { winnerOf: 'PRE-02' }, status: 'scheduled', maps: [] },
+  { id: 'QF-02', stage: 'quarterfinal', format: 'MD1', date: '2026-10-13', order: 3, team1: { winnerOf: 'PRE-03' }, team2: { winnerOf: 'PRE-04' }, status: 'scheduled', maps: [] },
   { id: 'QF-03', stage: 'quarterfinal', format: 'MD1', date: '2026-10-12', order: 2, team1: { team: 'I' }, team2: { team: 'J' }, status: 'scheduled', maps: [] },
-  { id: 'QF-04', stage: 'quarterfinal', format: 'MD1', date: '2026-10-13', order: 2, team1: { team: 'K' }, team2: { team: 'L' }, status: 'scheduled', maps: [] },
+  { id: 'QF-04', stage: 'quarterfinal', format: 'MD1', date: '2026-10-13', order: 1, team1: { team: 'K' }, team2: { team: 'L' }, status: 'scheduled', maps: [] },
 
   // 14/10 — Semifinais (MD3)
   { id: 'SF-01', stage: 'semifinal', format: 'MD3', date: '2026-10-14', order: 1, team1: { winnerOf: 'QF-01' }, team2: { winnerOf: 'QF-03' }, status: 'scheduled', maps: [] },
