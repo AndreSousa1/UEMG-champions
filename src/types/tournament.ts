@@ -5,6 +5,7 @@
  *  - src/config/tournament.config.ts  (nome, datas, horários, durações, logo, exibição)
  *  - src/data/teams.ts                (equipes)
  *  - src/data/matches.ts              (partidas, chaveamento e resultados)
+ *  - src/data/streams.ts              (links das transmissões ao vivo)
  */
 
 /* ------------------------------------------------------------------ */
@@ -28,6 +29,14 @@ export type IsoDate = `${number}-${number}-${number}`;
 /* ------------------------------------------------------------------ */
 
 export type TournamentPhase = 'not-started' | 'in-progress' | 'completed';
+
+/** Links das transmissões ao vivo (src/data/streams.ts). */
+export interface LiveStreams {
+  /** Link da live de cada dia (AAAA-MM-DD → URL https). */
+  byDay: Readonly<Record<string, string>>;
+  /** Opcional: link específico de uma partida (ID → URL), substitui o do dia. */
+  byMatch?: Readonly<Record<string, string>>;
+}
 
 export interface PublicLink {
   label: string;

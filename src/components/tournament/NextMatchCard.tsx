@@ -1,9 +1,11 @@
 import { ArrowRight, CalendarDays, Clock3, Trophy } from 'lucide-react';
 import type { ReactNode } from 'react';
 import { matchWhen, seriesScore } from '../../lib/display';
+import { streamUrlFor } from '../../lib/streams';
 import { useLiveStatus, useSelection, useTournament } from '../../state/context';
 import type { ResolvedMatch } from '../../types/tournament';
 import { VersusSide } from '../matches/VersusSide';
+import { WatchLiveButton } from '../ui/WatchLiveButton';
 import { Countdown } from './Countdown';
 
 function CardShell({ label, tone = 'default', children }: { label: string; tone?: 'default' | 'live'; children: ReactNode }) {
@@ -84,14 +86,17 @@ function MatchBody({ match, mode }: { match: ResolvedMatch; mode: 'next' | 'live
         </p>
       )}
 
-      <button
-        type="button"
-        onClick={() => openMatch(match.definition.id)}
-        className="group mt-5 inline-flex items-center gap-2 font-display text-sm font-bold tracking-[0.14em] text-accent uppercase"
-      >
-        Detalhes da partida
-        <ArrowRight className="size-4 transition group-hover:translate-x-1" aria-hidden="true" />
-      </button>
+      <div className="mt-5 flex flex-wrap items-center gap-3">
+        <WatchLiveButton href={streamUrlFor(model.streams, match.definition.id, match.definition.date)} />
+        <button
+          type="button"
+          onClick={() => openMatch(match.definition.id)}
+          className="group inline-flex items-center gap-2 font-display text-sm font-bold tracking-[0.14em] text-accent uppercase"
+        >
+          Detalhes da partida
+          <ArrowRight className="size-4 transition group-hover:translate-x-1" aria-hidden="true" />
+        </button>
+      </div>
     </>
   );
 }

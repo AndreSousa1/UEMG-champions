@@ -21,11 +21,12 @@ Feito com React + TypeScript (strict) + Vite + Tailwind CSS. Não há backend: t
 9. [Registrar resultados](#9-registrar-resultados)
 10. [Alterar o chaveamento](#10-alterar-o-chaveamento)
 11. [Configurar links públicos](#11-configurar-links-públicos)
-12. [Patrocinadores](#12-patrocinadores)
-13. [Fase atual e simulação de data](#13-fase-atual-e-simulação-de-data)
-14. [Gerar a versão de produção](#14-gerar-a-versão-de-produção)
-15. [Testes e verificações](#15-testes-e-verificações)
-16. [Estrutura de pastas](#16-estrutura-de-pastas)
+12. [Transmissões ao vivo](#12-transmissões-ao-vivo)
+13. [Patrocinadores](#13-patrocinadores)
+14. [Fase atual e simulação de data](#14-fase-atual-e-simulação-de-data)
+15. [Gerar a versão de produção](#15-gerar-a-versão-de-produção)
+16. [Testes e verificações](#16-testes-e-verificações)
+17. [Estrutura de pastas](#17-estrutura-de-pastas)
 
 ---
 
@@ -47,6 +48,7 @@ Abra o endereço mostrado no terminal (normalmente http://localhost:5173). As al
 | Nome, datas, horário de início, durações, fuso, logo, links oficiais, rodapé, cor de destaque | `src/config/tournament.config.ts` |
 | Nomes, siglas, logos, jogadores e links das equipes | `src/data/teams.ts` |
 | Confrontos, dias, ordem, horários fixos e **resultados** | `src/data/matches.ts` |
+| Links das transmissões ao vivo (um por dia) | `src/data/streams.ts` |
 | Imagem do logo do campeonato | `public/assets/uemg-champions-logo.png` |
 | Patrocinadores (textos, serviços, links, ordem, destaque) | `src/data/sponsors.ts` |
 | Logos dos patrocinadores | `public/assets/patrocinadores/` |
@@ -313,7 +315,22 @@ publicLinks: [{ label: 'Instagram', url: 'https://instagram.com/...', kind: 'soc
 
 `kind` pode ser `'site'`, `'social'`, `'stream'` ou `'other'`. Apenas URLs `https://` ou `http://` são aceitas; outras (ex.: `javascript:`) geram aviso de inconsistência e não são exibidas.
 
-## 12. Patrocinadores
+## 12. Transmissões ao vivo
+
+Os links das lives ficam em **`src/data/streams.ts`**, um por dia. O botão **Acompanhe a live** aparece no card da próxima partida (topo da página) e nos detalhes de cada jogo, usando o link do dia da partida.
+
+```ts
+byDay: {
+  '2026-10-12': 'https://www.youtube.com/watch?v=Cxy2-GkWYqA',
+  '2026-10-13': 'https://www.youtube.com/watch?v=Cxy2-GkWYqA', // troque quando a live do dia estiver no ar
+  '2026-10-14': 'https://www.youtube.com/watch?v=Cxy2-GkWYqA',
+  '2026-10-15': 'https://www.youtube.com/watch?v=Cxy2-GkWYqA',
+},
+```
+
+Para uma partida em outro canal, use `byMatch: { FINAL: 'https://...' }` — esse valor substitui o do dia. Deixe a string vazia para esconder o botão naquele dia.
+
+## 13. Patrocinadores
 
 Os patrocinadores ficam em **`src/data/sponsors.ts`** e as logos em **`public/assets/patrocinadores/`**. A partir dessa lista o site monta automaticamente:
 
@@ -366,14 +383,14 @@ confirmed: true,
 
 O link `https://wa.me/55…` é gerado automaticamente, removendo a formatação, acrescentando o código do Brasil (55) e codificando a mensagem inicial (`message`). Mesmo com `confirmed: true`, números incompletos continuam sem botão.
 
-## 13. Fase atual e simulação de data
+## 14. Fase atual e simulação de data
 
 A fase exibida (Não iniciado / Em andamento / Concluído) é calculada pela data atual e pelos resultados. Em `tournament.config.ts`:
 
 - `phaseOverride: 'not-started' | 'in-progress' | 'completed' | null` — força a fase exibida (use `null` para o cálculo automático).
 - `clockOverride: '2026-10-13T20:30:00-03:00' | null` — simula o relógio do site para conferir como ele ficará num dado momento. **Volte para `null` antes de publicar.**
 
-## 14. Gerar a versão de produção
+## 15. Gerar a versão de produção
 
 ```bash
 npm run build     # gera a pasta dist/
@@ -382,7 +399,7 @@ npm run preview   # serve dist/ localmente para conferência
 
 A pasta `dist/` é estática e pode ser publicada em qualquer hospedagem de arquivos (GitHub Pages, Netlify, Vercel, servidor da universidade etc.). Os caminhos são relativos, então funciona também em subpastas.
 
-## 15. Testes e verificações
+## 16. Testes e verificações
 
 ```bash
 npm run typecheck  # TypeScript
@@ -393,7 +410,7 @@ npm run check      # tudo acima + build
 
 Os testes cobrem: 12 equipes e 11 partidas; nenhuma equipe em dois jogos da mesma rodada; confrontos exatos da estrutura; avanço automático dos vencedores; regras MD1/MD3; partidas não encerradas não avançam ninguém; resultados inválidos; horários calculados (19/20/21/22, 19:00 e 20:30, 19:00); horário fixo; fuso de Brasília; situação das equipes; campeão só após a final; patrocinadores (exibição, logo, links, ordem, inativos, vários cartões, campos ausentes, seção oculta sem patrocinadores e bloqueio de WhatsApp incompleto); e ausência de CPF, e-mail, telefone e campos sensíveis nos dados públicos e no HTML gerado.
 
-## 16. Estrutura de pastas
+## 17. Estrutura de pastas
 
 ```
 public/
@@ -404,6 +421,7 @@ src/
   config/tournament.config.ts   ← configuração geral e agenda
   data/teams.ts                 ← equipes
   data/matches.ts               ← partidas e resultados
+  data/streams.ts               ← links das transmissões ao vivo
   data/sponsors.ts              ← patrocinadores
   types/tournament.ts, sponsor.ts ← tipos
   lib/

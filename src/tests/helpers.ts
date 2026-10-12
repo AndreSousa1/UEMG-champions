@@ -1,10 +1,11 @@
 import { tournamentConfig } from '../config/tournament.config';
 import { matches } from '../data/matches';
 import { sponsors } from '../data/sponsors';
+import { liveStreams } from '../data/streams';
 import { teams } from '../data/teams';
 import { buildTournament } from '../lib/tournament';
 import type { Sponsor } from '../types/sponsor';
-import type { MapResult, MatchDefinition, TournamentConfig } from '../types/tournament';
+import type { LiveStreams, MapResult, MatchDefinition, TournamentConfig } from '../types/tournament';
 
 export const config: TournamentConfig = tournamentConfig;
 
@@ -31,8 +32,9 @@ export function build(
   matchList: readonly MatchDefinition[] = matches,
   cfg: TournamentConfig = config,
   sponsorList: readonly Sponsor[] = sponsors,
+  streams: LiveStreams = liveStreams,
 ) {
-  return buildTournament(cfg, teams, matchList, sponsorList);
+  return buildTournament(cfg, teams, matchList, sponsorList, streams);
 }
 
 export function withSchedule(patch: Partial<TournamentConfig['schedule']>): TournamentConfig {

@@ -1,9 +1,11 @@
 import { AlertTriangle, ArrowRight, CalendarDays, Clock3, Hourglass, Trophy } from 'lucide-react';
 import { matchWhen, seriesScore, slotAt } from '../../lib/display';
 import { mapsToWin } from '../../lib/results';
+import { streamUrlFor } from '../../lib/streams';
 import { useSelection, useTournament } from '../../state/context';
 import type { ResolvedMatch } from '../../types/tournament';
 import { Dialog } from '../ui/Dialog';
+import { WatchLiveButton } from '../ui/WatchLiveButton';
 import { MapTable } from './MapScores';
 import { MatchStatusBadge } from './MatchStatusBadge';
 import { VersusSide } from './VersusSide';
@@ -133,6 +135,8 @@ function MatchDetails({ match }: { match: ResolvedMatch }) {
       </div>
 
       {def.note && <p className="rounded-lg border border-line bg-ink-850 px-4 py-3 text-sm text-fg-muted">{def.note}</p>}
+
+      <WatchLiveButton href={streamUrlFor(model.streams, def.id, def.date)} />
     </div>
   );
 }

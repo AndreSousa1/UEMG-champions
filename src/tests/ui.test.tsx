@@ -36,6 +36,18 @@ describe('interface', () => {
     expect(html).not.toContain('id="campeao"');
   });
 
+  it('exibe o botão da live com o link do dia da próxima partida', () => {
+    const html = render();
+    expect(html).toContain('Acompanhe a live');
+    expect(html).toContain('https://www.youtube.com/watch?v=Cxy2-GkWYqA');
+    expect(html).toContain('rel="noopener noreferrer"');
+  });
+
+  it('esconde o botão da live quando o dia não tem URL', () => {
+    const html = render(build(undefined, undefined, undefined, { byDay: {} }));
+    expect(html).not.toContain('Acompanhe a live');
+  });
+
   it('atualiza o chaveamento quando um resultado é registrado', () => {
     const html = render(build(withResults({ 'PRE-01': md1Win(1) })), new Date('2026-10-12T20:10:00-03:00'));
     expect(html).toContain('Em andamento');

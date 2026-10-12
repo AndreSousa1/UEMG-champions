@@ -1,4 +1,5 @@
 import type {
+  LiveStreams,
   MatchDefinition,
   ResolvedMatch,
   TeamDefinition,
@@ -9,6 +10,7 @@ import type {
 import type { Sponsor } from '../types/sponsor';
 import { resolveBracket } from './bracket';
 import { activeSponsors } from './sponsors';
+import { validateStreams } from './streams';
 import { computeSchedule, findScheduleIssues } from './schedule';
 import {
   computeStandings,
@@ -33,6 +35,8 @@ export interface TournamentModel {
   issues: readonly ValidationIssue[];
   /** Patrocinadores ativos, já ordenados por `displayOrder`. */
   sponsors: readonly Sponsor[];
+  /** Links das transmissões ao vivo, por dia (e opcionalmente por partida). */
+  streams: LiveStreams;
 }
 
 /**
@@ -45,6 +49,7 @@ export function buildTournament(
   teams: readonly TeamDefinition[],
   matches: readonly MatchDefinition[],
   sponsors: readonly Sponsor[] = [],
+  streams: LiveStreams = { byDay: {} },
 ): TournamentModel {
   const configIssues = validateConfig(config);
   const scheduleUsable = !configIssues.some((i) => i.severity === 'error');
@@ -59,6 +64,7 @@ export function buildTournament(
     ...validateMatches(config, matches),
     ...bracket.issues,
     ...findScheduleIssues(matches, schedule),
+    ...validateStreams(streams),
   ];
 
   return {
@@ -72,6 +78,7 @@ export function buildTournament(
     stats: computeStats(teams, ordered, standings),
     issues: dedupe(issues),
     sponsors: activeSponsors(sponsors),
+    streams,
   };
 }
 
