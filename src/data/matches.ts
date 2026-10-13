@@ -40,7 +40,7 @@ export const matches = defineMatches<TeamId, ScheduleDate>()([
   { id: 'QF-01', stage: 'quarterfinal', format: 'MD1', date: '2026-10-13', order: 4, team1: { winnerOf: 'PRE-01' }, team2: { winnerOf: 'PRE-02' }, status: 'scheduled', maps: [] },
   { id: 'QF-02', stage: 'quarterfinal', format: 'MD1', date: '2026-10-13', order: 2, team1: { winnerOf: 'PRE-03' }, team2: { winnerOf: 'PRE-04' }, status: 'scheduled', maps: [] },
   { id: 'QF-03', stage: 'quarterfinal', format: 'MD1', date: '2026-10-12', order: 2, team1: { team: 'I' }, team2: { team: 'J' }, status: 'completed', maps: [{ rounds: [13, 10] }] },
-  { id: 'QF-04', stage: 'quarterfinal', format: 'MD1', date: '2026-10-13', order: 1, team1: { team: 'K' }, team2: { team: 'L' }, status: 'scheduled', maps: [] },
+  { id: 'QF-04', stage: 'quarterfinal', format: 'MD1', date: '2026-10-13', order: 1, team1: { team: 'K' }, team2: { team: 'L' }, status: 'completed', maps: [{ rounds: [4, 13] }] },
 
   // 14/10 — Semifinais (MD3)
   { id: 'SF-01', stage: 'semifinal', format: 'MD3', date: '2026-10-14', order: 1, team1: { winnerOf: 'QF-01' }, team2: { winnerOf: 'QF-03' }, status: 'scheduled', maps: [] },
