@@ -20,12 +20,12 @@ describe('interface', () => {
     expect(before).not.toContain('20:15');
     expect(after).toContain('20:15');
     expect(after).toContain('22:45');
-    expect(after).toContain('21:00');
+    expect(after).toContain('21:30');
     expect(after).toContain('MD1 ≈ <!-- -->75<!-- --> min');
   });
 
   it('reflete um horário fixo configurado para uma partida', () => {
-    const html = render(build(withResults({ 'PRE-03': { fixedTime: '21:20' } })));
+    const html = render(build(withResults({ 'QF-03': { fixedTime: '21:20' } })));
     expect(html).toContain('21:20');
   });
 

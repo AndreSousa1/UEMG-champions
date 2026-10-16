@@ -11,7 +11,12 @@ export const config: TournamentConfig = tournamentConfig;
 
 type ResultPatch = Partial<Pick<MatchDefinition, 'status' | 'maps' | 'walkover' | 'fixedTime' | 'team1' | 'team2' | 'stage' | 'date' | 'order'>>;
 
-export function withResults(patches: Record<string, ResultPatch>, base: readonly MatchDefinition[] = matches): MatchDefinition[] {
+/** Cópia das partidas sem placar — os testes de regras partem da chave vazia. */
+export function withoutResults(list: readonly MatchDefinition[] = matches): MatchDefinition[] {
+  return list.map((m) => ({ ...m, status: 'scheduled' as const, maps: [], walkover: undefined }));
+}
+
+export function withResults(patches: Record<string, ResultPatch>, base: readonly MatchDefinition[] = withoutResults()): MatchDefinition[] {
   return base.map((m) => (patches[m.id] ? { ...m, ...patches[m.id] } : m));
 }
 
@@ -29,7 +34,7 @@ export function md3Win(slot: 1 | 2): ResultPatch {
 }
 
 export function build(
-  matchList: readonly MatchDefinition[] = matches,
+  matchList: readonly MatchDefinition[] = withoutResults(),
   cfg: TournamentConfig = config,
   sponsorList: readonly Sponsor[] = sponsors,
   streams: LiveStreams = liveStreams,

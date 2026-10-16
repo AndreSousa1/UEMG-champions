@@ -4,7 +4,7 @@ import type { TournamentConfig } from '../types/tournament';
  * CONFIGURAÇÃO CENTRAL DO UEMG champions
  *
  * Tudo o que a organização normalmente precisa ajustar sobre o evento está aqui.
- * Equipes ficam em src/data/teams.ts e partidas/resultados em src/data/matches.ts.
+ * Equipes, partidas, resultados e patrocinadores ficam em src/data/tournament.json.
  * Após salvar, o site (agenda, chaveamento, contagem regressiva e cartões) é
  * recalculado automaticamente.
  */
@@ -42,7 +42,7 @@ export const tournamentConfig = {
    * - durationsMinutes: duração ESTIMADA de cada formato.
    * - gapMinutes: intervalo entre partidas.
    * Os horários das partidas são calculados em sequência a partir destes valores,
-   * na ordem definida pelo campo `order` em src/data/matches.ts. Uma partida com
+   * na ordem definida pelo campo `order` em src/data/tournament.json. Uma partida com
    * `fixedTime` ignora o cálculo e passa a ser a referência para as seguintes.
    */
   schedule: {

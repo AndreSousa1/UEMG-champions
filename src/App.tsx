@@ -1,3 +1,5 @@
+import { useEffect, useMemo, useState } from 'react';
+import { AdminGate } from './components/admin/AdminGate';
 import { BracketSection } from './components/bracket/BracketSection';
 import { Footer } from './components/layout/Footer';
 import { Header } from './components/layout/Header';
@@ -11,15 +13,20 @@ import { ChampionHighlight } from './components/tournament/ChampionHighlight';
 import { FormatSection } from './components/tournament/FormatSection';
 import { Hero } from './components/tournament/Hero';
 import { StatsStrip } from './components/tournament/StatsStrip';
-import type { TournamentModel } from './lib/tournament';
+import { tournamentConfig } from './config/tournament.config';
+import { buildTournament, type TournamentModel } from './lib/tournament';
+import { cloneData, clearTournamentData, loadTournamentData, saveTournamentData, sourceData, type TournamentData } from './lib/tournament-data';
 import { TournamentProvider } from './state/TournamentProvider';
 
 interface AppProps {
   model: TournamentModel;
   fixedNow?: Date;
+  data?: TournamentData;
+  onSave?: (next: TournamentData) => void;
+  onReset?: () => void;
 }
 
-export function App({ model, fixedNow }: AppProps) {
+export function App({ model, fixedNow, data, onSave, onReset }: AppProps) {
   return (
     <TournamentProvider model={model} fixedNow={fixedNow}>
       <a
@@ -43,6 +50,36 @@ export function App({ model, fixedNow }: AppProps) {
       <Footer />
       <MatchDialog />
       <TeamDialog />
+      {data && onSave && onReset ? <AdminGate data={data} onSave={onSave} onReset={onReset} /> : null}
     </TournamentProvider>
+  );
+}
+
+/** Entrada de produção: JSON + overlay local + painel Ctrl+Shift+L. */
+export function LiveApp() {
+  const [data, setData] = useState(() => loadTournamentData());
+  const model = useMemo(
+    () => buildTournament(tournamentConfig, data.teams, data.matches, data.sponsors, data.streams),
+    [data],
+  );
+
+  useEffect(() => {
+    document.documentElement.style.setProperty('--brand-accent', model.config.theme.accent);
+    document.documentElement.style.setProperty('--brand-accent-contrast', model.config.theme.accentContrast);
+  }, [model]);
+
+  return (
+    <App
+      model={model}
+      data={data}
+      onSave={(next) => {
+        saveTournamentData(next);
+        setData(cloneData(next));
+      }}
+      onReset={() => {
+        clearTournamentData();
+        setData(cloneData(sourceData));
+      }}
+    />
   );
 }

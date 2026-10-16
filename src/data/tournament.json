@@ -1,0 +1,289 @@
+{
+  "teams": [
+    {
+      "id": "E",
+      "name": "PND Gaming",
+      "shortName": "PND",
+      "logo": "assets/teams/PND Gaming.jpeg",
+      "isPlaceholder": false,
+      "players": [
+        { "nickname": "RoxtinN" },
+        { "nickname": "carlin;" },
+        { "nickname": "Gralha" },
+        { "nickname": "Hutch" },
+        { "nickname": "Remiquis" }
+      ],
+      "reserve": { "nickname": "Leoneashy" },
+      "publicLinks": [],
+      "displaySettings": {}
+    },
+    {
+      "id": "H",
+      "name": "Banda",
+      "shortName": "Banda",
+      "logo": "assets/teams/Banda.jpeg",
+      "isPlaceholder": false,
+      "players": [
+        { "nickname": "Xsq." },
+        { "nickname": "Jaum" },
+        { "nickname": "ᴢғɪʀᴇ" },
+        { "nickname": "dring0d" },
+        { "nickname": "Mad" }
+      ],
+      "reserve": null,
+      "publicLinks": [],
+      "displaySettings": {}
+    },
+    {
+      "id": "A",
+      "name": "CMP E-sports",
+      "shortName": "CMP",
+      "logo": "assets/teams/CMP E-sports.jpeg",
+      "isPlaceholder": false,
+      "players": [
+        { "nickname": "CMP | savinxtz" },
+        { "nickname": "TiniN" },
+        { "nickname": "jxoz1n" },
+        { "nickname": "Smolkqz" },
+        { "nickname": "pipelinesx" }
+      ],
+      "reserve": null,
+      "publicLinks": [],
+      "displaySettings": {}
+    },
+    {
+      "id": "G",
+      "name": "Maned Wolf",
+      "shortName": "Maned Wolf",
+      "logo": "assets/teams/Maned Wolf.jpeg",
+      "isPlaceholder": false,
+      "players": [
+        { "nickname": "FeS" },
+        { "nickname": "K Y O M U" },
+        { "nickname": "IcR" },
+        { "nickname": "ViicTin" },
+        { "nickname": "Mudestel" }
+      ],
+      "reserve": { "nickname": "guto_04" },
+      "publicLinks": [],
+      "displaySettings": {}
+    },
+    {
+      "id": "C",
+      "name": "Matilha FC",
+      "shortName": "Matilha",
+      "logo": "assets/teams/Matilha FC.jpeg",
+      "isPlaceholder": false,
+      "players": [
+        { "nickname": "Down" },
+        { "nickname": "MATH FGC" },
+        { "nickname": "mecrrrrrrrajada" },
+        { "nickname": "Souza" },
+        { "nickname": "RUSSIN YAGAMA" }
+      ],
+      "reserve": null,
+      "publicLinks": [],
+      "displaySettings": {}
+    },
+    {
+      "id": "K",
+      "name": "VaiQueEuBango",
+      "shortName": "VQEB",
+      "logo": "assets/teams/VaiQueEuBango.jpeg",
+      "isPlaceholder": false,
+      "players": [
+        { "nickname": "FraNGo" },
+        { "nickname": "PedroPiranha" },
+        { "nickname": "oFerJão" },
+        { "nickname": "bRn?" },
+        { "nickname": "Genie Flick" }
+      ],
+      "reserve": null,
+      "publicLinks": [],
+      "displaySettings": {}
+    },
+    {
+      "id": "B",
+      "name": "Esquema de Aposta",
+      "shortName": "Esquema",
+      "logo": "assets/teams/Esquema de Aposta.jpeg",
+      "isPlaceholder": false,
+      "players": [
+        { "nickname": "Tigrinho tá pagando" },
+        { "nickname": "voicezito" },
+        { "nickname": "Peter Wet" },
+        { "nickname": "pedra que esmagou o obito" },
+        { "nickname": "Dig" }
+      ],
+      "reserve": null,
+      "publicLinks": [],
+      "displaySettings": {}
+    },
+    {
+      "id": "F",
+      "name": "FNW",
+      "shortName": "FNW",
+      "logo": "assets/teams/FNW.jpeg",
+      "isPlaceholder": false,
+      "players": [
+        { "nickname": "Cleyder" },
+        { "nickname": "Ollebac" },
+        { "nickname": "Godoi" },
+        { "nickname": "W" },
+        { "nickname": "Aranha" }
+      ],
+      "reserve": { "nickname": "LigeirinhoJESUS" },
+      "publicLinks": [],
+      "displaySettings": {}
+    },
+    {
+      "id": "I",
+      "name": "PvTEAM",
+      "shortName": "PvTEAM",
+      "logo": "assets/teams/PvTEAM.jpeg",
+      "isPlaceholder": false,
+      "players": [
+        { "nickname": "Gudereck" },
+        { "nickname": "hackshima" },
+        { "nickname": "Mcdk_" },
+        { "nickname": "caioba" },
+        { "nickname": "Joaozin de quebra" }
+      ],
+      "reserve": { "nickname": "Pedrãoo" },
+      "publicLinks": [],
+      "displaySettings": {}
+    },
+    {
+      "id": "D",
+      "name": "Divine Forge",
+      "shortName": "Divine",
+      "logo": "assets/teams/Divine Forge.jpeg",
+      "isPlaceholder": false,
+      "players": [
+        { "nickname": "não aguento mais ser prata" },
+        { "nickname": "H4d.enCe" },
+        { "nickname": "Bartolomeu" },
+        { "nickname": "joaoasx11" },
+        { "nickname": "Kadlaki" }
+      ],
+      "reserve": null,
+      "publicLinks": [],
+      "displaySettings": {}
+    },
+    {
+      "id": "J",
+      "name": "LimaMei",
+      "shortName": "LimaMei",
+      "logo": "assets/teams/LimaMei.jpeg",
+      "isPlaceholder": false,
+      "players": [
+        { "nickname": "Pedrofredyy" },
+        { "nickname": "Lootday" },
+        { "nickname": "Dao Ma" },
+        { "nickname": "DeCarD KaYn" },
+        { "nickname": "Less" }
+      ],
+      "reserve": { "nickname": "Lokiu" },
+      "publicLinks": [],
+      "displaySettings": {}
+    },
+    {
+      "id": "L",
+      "name": "Arsenal CS",
+      "shortName": "Arsenal",
+      "logo": "assets/teams/Arsenal CS.jpeg",
+      "isPlaceholder": false,
+      "players": [
+        { "nickname": "r0s" },
+        { "nickname": "V1TINHO" },
+        { "nickname": "ACR" },
+        { "nickname": "Dimitri" },
+        { "nickname": "Drt" }
+      ],
+      "reserve": { "nickname": "MCS" },
+      "publicLinks": [],
+      "displaySettings": {}
+    }
+  ],
+  "matches": [
+    { "id": "PRE-01", "stage": "preliminary", "format": "MD1", "date": "2026-10-12", "order": 1, "team1": { "team": "A" }, "team2": { "team": "B" }, "status": "completed", "maps": [{ "rounds": [13, 9] }] },
+    { "id": "PRE-02", "stage": "preliminary", "format": "MD1", "date": "2026-10-13", "order": 3, "team1": { "team": "C" }, "team2": { "team": "D" }, "status": "completed", "maps": [{ "rounds": [16, 13] }] },
+    { "id": "PRE-03", "stage": "preliminary", "format": "MD1", "date": "2026-10-12", "order": 3, "team1": { "team": "E" }, "team2": { "team": "F" }, "status": "completed", "maps": [{ "rounds": [13, 9] }] },
+    { "id": "PRE-04", "stage": "preliminary", "format": "MD1", "date": "2026-10-12", "order": 4, "team1": { "team": "G" }, "team2": { "team": "H" }, "status": "completed", "maps": [{ "rounds": [9, 13] }] },
+    { "id": "QF-01", "stage": "quarterfinal", "format": "MD1", "date": "2026-10-13", "order": 4, "team1": { "winnerOf": "PRE-01" }, "team2": { "winnerOf": "PRE-02" }, "status": "completed", "maps": [{ "rounds": [6, 13] }] },
+    { "id": "QF-02", "stage": "quarterfinal", "format": "MD1", "date": "2026-10-13", "order": 2, "team1": { "winnerOf": "PRE-03" }, "team2": { "winnerOf": "PRE-04" }, "status": "completed", "maps": [{ "rounds": [13, 16] }] },
+    { "id": "QF-03", "stage": "quarterfinal", "format": "MD1", "date": "2026-10-12", "order": 2, "team1": { "team": "I" }, "team2": { "team": "J" }, "status": "completed", "maps": [{ "rounds": [13, 10] }] },
+    { "id": "QF-04", "stage": "quarterfinal", "format": "MD1", "date": "2026-10-13", "order": 1, "team1": { "team": "K" }, "team2": { "team": "L" }, "status": "completed", "maps": [{ "rounds": [4, 13] }] },
+    { "id": "SF-01", "stage": "semifinal", "format": "MD3", "date": "2026-10-14", "order": 1, "team1": { "winnerOf": "QF-01" }, "team2": { "winnerOf": "QF-03" }, "status": "completed", "maps": [{ "rounds": [9, 13] }, { "rounds": [8, 13] }] },
+    { "id": "SF-02", "stage": "semifinal", "format": "MD3", "date": "2026-10-14", "order": 2, "team1": { "winnerOf": "QF-02" }, "team2": { "winnerOf": "QF-04" }, "status": "completed", "maps": [{ "rounds": [8, 13] }, { "rounds": [1, 13] }] },
+    { "id": "FINAL", "stage": "final", "format": "MD3", "date": "2026-10-15", "order": 1, "team1": { "winnerOf": "SF-01" }, "team2": { "winnerOf": "SF-02" }, "status": "completed", "maps": [{ "rounds": [4, 13] }, { "rounds": [1, 13] }] }
+  ],
+  "sponsors": [
+    {
+      "id": "n1-skins",
+      "name": "N1 Skins",
+      "logo": "assets/patrocinadores/n1-skins-logo.jpeg",
+      "category": "Skins de Counter-Strike 2",
+      "description": "Sua loja oficial de skins de CS2. Compre, venda, encomende e faça o upgrade do seu inventário de forma rápida e 100% segura pelo Instagram e WhatsApp.",
+      "about": "Líder em transparência e segurança no CS2: acompanhe gameplays reais das skins, feedbacks de clientes satisfeitos e nossa presença nos maiores eventos do cenário, como a IEM Rio.",
+      "services": [
+        {
+          "id": "compra",
+          "title": "Venda suas Skins e receba na hora",
+          "description": "Transforme suas skins do CS2 em dinheiro sem enrolação! Pagamento instantâneo via PIX ou Criptomoedas.",
+          "icon": "buy"
+        },
+        {
+          "id": "upgrade",
+          "title": "Upgrade & Troca de Inventário",
+          "description": "Não jogue \"Eco\" de skin! Entregue seus itens atuais como parte do pagamento para pegar uma skin ainda melhor.",
+          "icon": "trade"
+        },
+        {
+          "id": "venda",
+          "title": "Venda & Encomendas Exclusivas",
+          "description": "Achamos qualquer skin do CS2 para você com entrega direta na sua conta Steam e suporte personalizado.",
+          "icon": "sell"
+        }
+      ],
+      "paymentMethods": [
+        { "id": "pix", "label": "PIX Instantâneo", "kind": "pix" },
+        { "id": "cripto", "label": "Criptomoedas", "kind": "crypto" }
+      ],
+      "socialLinks": [
+        {
+          "id": "instagram",
+          "network": "instagram",
+          "label": "Siga a @n1skins no Instagram",
+          "url": "https://www.instagram.com/n1skins?obrf=dXhoaXV1cnNrYnc0",
+          "handle": "@n1skins"
+        }
+      ],
+      "contactLinks": [
+        {
+          "id": "whatsapp",
+          "type": "whatsapp",
+          "label": "Chame no WhatsApp e faça sua cotação",
+          "phone": "(37) 9867-4878",
+          "confirmed": false,
+          "message": "Olá! Vim pelo UEMG Champions e quero fazer uma cotação de skins com a N1 Skins!"
+        }
+      ],
+      "isActive": true,
+      "displayOrder": 1,
+      "featured": true,
+      "displaySettings": {
+        "logoAlt": "Logo da N1 Skins",
+        "logoBackground": "#020200"
+      }
+    }
+  ],
+  "streams": {
+    "byDay": {
+      "2026-10-12": "https://www.youtube.com/watch?v=Cxy2-GkWYqA",
+      "2026-10-13": "https://www.youtube.com/watch?v=Cxy2-GkWYqA",
+      "2026-10-14": "https://www.youtube.com/watch?v=Cxy2-GkWYqA",
+      "2026-10-15": "https://www.youtube.com/watch?v=Cxy2-GkWYqA"
+    }
+  }
+}

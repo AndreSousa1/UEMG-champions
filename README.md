@@ -2,7 +2,9 @@
 
 Site público do campeonato universitário de Counter-Strike **UEMG champions** (12 a 15 de outubro de 2026, 12 equipes, eliminação simples, 11 partidas).
 
-Feito com React + TypeScript (strict) + Vite + Tailwind CSS. Não há backend: todas as informações ficam em três arquivos de dados e o site calcula sozinho horários, chaveamento, situação das equipes e a fase atual.
+Feito com React + TypeScript (strict) + Vite + Tailwind CSS. Não há backend: as informações públicas ficam em `src/data/tournament.json` (e a configuração do evento em `src/config/tournament.config.ts`). O site calcula sozinho horários, chaveamento, situação das equipes e a fase atual.
+
+Para atualizar resultados, nomes, partidas e patrocinadores pelo próprio site: **Ctrl+Shift+L**, usuário `uemg`, senha `champs`.
 
 > **Importante:** tudo o que estiver em `src/config/` e `src/data/` vai para o JavaScript público do site. As opções de exibição (`publicDisplay`, `displaySettings`) só escondem itens da interface — **não** protegem dados. Nunca coloque nesses arquivos CPF, matrícula, e-mail, WhatsApp, Discord privado, nome completo ou dados de inscrição.
 
@@ -46,12 +48,23 @@ Abra o endereço mostrado no terminal (normalmente http://localhost:5173). As al
 | O que mudar | Arquivo |
 | --- | --- |
 | Nome, datas, horário de início, durações, fuso, logo, links oficiais, rodapé, cor de destaque | `src/config/tournament.config.ts` |
-| Nomes, siglas, logos, jogadores e links das equipes | `src/data/teams.ts` |
-| Confrontos, dias, ordem, horários fixos e **resultados** | `src/data/matches.ts` |
-| Links das transmissões ao vivo (um por dia) | `src/data/streams.ts` |
+| Equipes, confrontos, resultados, patrocinadores e lives | `src/data/tournament.json` |
 | Imagem do logo do campeonato | `public/assets/uemg-champions-logo.png` |
-| Patrocinadores (textos, serviços, links, ordem, destaque) | `src/data/sponsors.ts` |
+| Logos das equipes | `public/assets/teams/` |
 | Logos dos patrocinadores | `public/assets/patrocinadores/` |
+
+Os arquivos `src/data/teams.ts`, `matches.ts`, `sponsors.ts` e `streams.ts` só reexportam o JSON, para os testes e o restante do código continuarem importando os mesmos nomes.
+
+### Painel da organização (Ctrl+Shift+L)
+
+No site aberto, pressione **Ctrl+Shift+L**. Entre com usuário `uemg` e senha `champs`. O painel permite:
+
+- lançar resultados (placar por mapa, situação da partida, W.O.);
+- atualizar nomes e siglas das equipes;
+- ajustar dia, ordem, fase, formato e lados das partidas;
+- editar textos, links e WhatsApp dos patrocinadores.
+
+**Aplicar no site** grava as mudanças neste navegador (localStorage) e atualiza a página na hora. O arquivo do projeto não é alterado pelo navegador — para publicar, use **Baixar JSON** e substitua `src/data/tournament.json`. Isso não é um login de servidor: o atalho só esconde a tela de edição.
 
 Os componentes visuais não têm nenhum confronto, data ou nome fixo no código: tudo vem desses arquivos. Se algo estiver inconsistente (ex.: equipe repetida, resultado impossível), o TypeScript acusa o erro ou o site mostra um aviso "Dados do campeonato em revisão" no topo, em vez de exibir informação errada.
 
@@ -77,7 +90,7 @@ Para usar outro formato (SVG, WebP), basta mudar `src`.
 
 ## 4. Renomear uma equipe
 
-Em `src/data/teams.ts`, cada equipe tem um **ID fixo de vaga** (`A` a `L`). O chaveamento usa o ID, então renomear não quebra nada:
+Em `src/data/tournament.json`, cada equipe tem um **ID fixo de vaga** (`A` a `L`). O chaveamento usa o ID, então renomear não quebra nada. Pelo site, use o painel (Ctrl+Shift+L → Equipes).
 
 ```ts
 {
@@ -190,7 +203,7 @@ O horário de cada partida é calculado em sequência: a 1ª começa em `startTi
 | 14/10 | SF-01, SF-02 (MD3) | 19:00, 20:30 |
 | 15/10 | FINAL (MD3) | 19:00 |
 
-- **Mudar o dia de uma partida:** altere `date` em `src/data/matches.ts` (o dia precisa existir em `schedule.days`).
+- **Mudar o dia de uma partida:** altere `date` em `src/data/tournament.json` (o dia precisa existir em `schedule.days`).
 - **Mudar a ordem no dia:** altere `order`.
 - **Fixar um horário específico:** adicione `fixedTime: '20:15'` na partida. As partidas seguintes do mesmo dia passam a ser calculadas a partir dela.
 
@@ -202,7 +215,7 @@ Em `schedule.durationsMinutes` (`MD1` e `MD3`) e `schedule.gapMinutes`. Todos os
 
 ## 9. Registrar resultados
 
-Em `src/data/matches.ts`, altere `status` e `maps` da partida. `rounds` é sempre `[equipe 1, equipe 2]`, na ordem `team1`/`team2` da partida.
+Pelo site: **Ctrl+Shift+L** → **Resultados**. Ou edite `status` e `maps` da partida em `src/data/tournament.json`. `rounds` é sempre `[equipe 1, equipe 2]`, na ordem `team1`/`team2` da partida.
 
 **Partida ao vivo:**
 
@@ -251,7 +264,7 @@ Regras aplicadas automaticamente:
 
 ## 10. Alterar o chaveamento
 
-Os confrontos ficam em `src/data/matches.ts`. Cada lado da partida é uma equipe fixa (`{ team: 'A' }`) ou o vencedor de outra partida (`{ winnerOf: 'PRE-01' }`). O TypeScript recusa IDs de equipe, partidas ou datas que não existem.
+Os confrontos ficam em `src/data/tournament.json` (aba **Partidas** do painel). Cada lado da partida é uma equipe fixa (`{ "team": "A" }`) ou o vencedor de outra partida (`{ "winnerOf": "PRE-01" }`).
 
 ### Estrutura atual (definida pela organização)
 
@@ -284,7 +297,7 @@ Uma opção mais comum para 12 equipes é cada vencedor da fase preliminar enfre
 | QF-03 | Vencedor PRE-03 × Equipe K |
 | QF-04 | Vencedor PRE-04 × Equipe L |
 
-com semifinais `SF-01: QF-01 × QF-02` e `SF-02: QF-03 × QF-04`. Para usá-la, troque `team1`/`team2` das quartas e semifinais em `matches.ts`. **Use apenas uma das estruturas** — misturar as duas faz uma equipe aparecer em dois jogos, e o site acusa a inconsistência.
+com semifinais `SF-01: QF-01 × QF-02` e `SF-02: QF-03 × QF-04`. Para usá-la, troque `team1`/`team2` das quartas e semifinais em `tournament.json`. **Use apenas uma das estruturas** — misturar as duas faz uma equipe aparecer em dois jogos, e o site acusa a inconsistência.
 
 ### Nomes das fases
 
@@ -307,7 +320,7 @@ organization: {
 },
 ```
 
-**Links de uma equipe** (`teams.ts`), exibidos se `publicDisplay.showTeamLinks` estiver ligado:
+**Links de uma equipe** (`tournament.json`), exibidos se `publicDisplay.showTeamLinks` estiver ligado:
 
 ```ts
 publicLinks: [{ label: 'Instagram', url: 'https://instagram.com/...', kind: 'social' }],
@@ -317,7 +330,7 @@ publicLinks: [{ label: 'Instagram', url: 'https://instagram.com/...', kind: 'soc
 
 ## 12. Transmissões ao vivo
 
-Os links das lives ficam em **`src/data/streams.ts`**, um por dia. O botão **Acompanhe a live** aparece no card da próxima partida (topo da página) e nos detalhes de cada jogo, usando o link do dia da partida.
+Os links das lives ficam em **`src/data/tournament.json`**, em `streams.byDay`, um por dia. O botão **Acompanhe a live** aparece no card da próxima partida (topo da página) e nos detalhes de cada jogo, usando o link do dia da partida.
 
 ```ts
 byDay: {
@@ -332,7 +345,7 @@ Para uma partida em outro canal, use `byMatch: { FINAL: 'https://...' }` — ess
 
 ## 13. Patrocinadores
 
-Os patrocinadores ficam em **`src/data/sponsors.ts`** e as logos em **`public/assets/patrocinadores/`**. A partir dessa lista o site monta automaticamente:
+Os patrocinadores ficam em **`src/data/tournament.json`** (aba **Patrocinadores** do painel) e as logos em **`public/assets/patrocinadores/`**. A partir dessa lista o site monta automaticamente:
 
 - a seção "Patrocinador oficial" / "Patrocinadores oficiais", antes do rodapé;
 - o nome dos patrocinadores sendo escrito em loop no topo da página (estático para quem ativou "reduzir movimento");
@@ -343,7 +356,7 @@ Nada disso aparece quando não há patrocinador ativo.
 ### Adicionar um patrocinador
 
 1. Salve a logo em `public/assets/patrocinadores/` com um nome sem espaços e em minúsculas (ex.: `loja-exemplo.png`).
-2. Copie o bloco da N1 Skins em `sponsors.ts` e ajuste os campos:
+2. Copie o bloco da N1 Skins em `tournament.json` e ajuste os campos:
 
 ```ts
 {
@@ -374,7 +387,7 @@ Nada disso aparece quando não há patrocinador ativo.
 
 ### WhatsApp da N1 Skins (pendente)
 
-O número recebido, `(37) 9867-4878`, tem 8 dígitos depois do DDD e começa com 9. Celulares brasileiros têm 9 dígitos depois do DDD, então parece faltar um dígito. Por isso o botão **"Fale pelo WhatsApp" está oculto**. Quando a organização confirmar o número completo, edite o contato em `sponsors.ts`:
+O número recebido, `(37) 9867-4878`, tem 8 dígitos depois do DDD e começa com 9. Celulares brasileiros têm 9 dígitos depois do DDD, então parece faltar um dígito. Por isso o botão **"Fale pelo WhatsApp" está oculto**. Quando a organização confirmar o número completo, edite o contato em `tournament.json` (ou no painel):
 
 ```ts
 phone: '(37) 9XXXX-XXXX', // número completo confirmado
@@ -419,10 +432,8 @@ samples/equipes-exemplo.csv     ← exemplo FICTÍCIO para o importador
 scripts/import-teams.ts         ← importador local de CSV/JSON sanitizado
 src/
   config/tournament.config.ts   ← configuração geral e agenda
-  data/teams.ts                 ← equipes
-  data/matches.ts               ← partidas e resultados
-  data/streams.ts               ← links das transmissões ao vivo
-  data/sponsors.ts              ← patrocinadores
+  data/tournament.json          ← equipes, partidas, resultados, patrocinadores e lives
+  data/teams.ts, matches.ts, sponsors.ts, streams.ts  ← reexportam o JSON
   types/tournament.ts, sponsor.ts ← tipos
   lib/
     bracket.ts                  ← resolução do chaveamento e validação estrutural

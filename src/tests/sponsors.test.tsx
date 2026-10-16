@@ -32,14 +32,19 @@ function sponsor(patch: Partial<Sponsor> & Pick<Sponsor, 'id' | 'name'>): Sponso
 }
 
 const n1 = sponsors[0];
+if (!n1) throw new Error('N1 Skins não cadastrada');
 
 describe('patrocinadores — cadastro', () => {
   it('a N1 Skins está cadastrada, ativa e em destaque', () => {
     expect(n1.id).toBe('n1-skins');
     expect(n1.isActive).toBe(true);
     expect(n1.featured).toBe(true);
-    expect(n1.services.map((s) => s.title)).toEqual(['Compra de skins', 'Upgrade e troca', 'Venda e encomendas']);
-    expect(n1.paymentMethods.map((p) => p.label)).toEqual(['PIX', 'Criptomoedas']);
+    expect(n1.services.map((s) => s.title)).toEqual([
+      'Venda suas Skins e receba na hora',
+      'Upgrade & Troca de Inventário',
+      'Venda & Encomendas Exclusivas',
+    ]);
+    expect(n1.paymentMethods.map((p) => p.label)).toEqual(['PIX Instantâneo', 'Criptomoedas']);
   });
 
   it('a logo aponta para um arquivo existente em public/, sem espaços no caminho', () => {
@@ -107,7 +112,14 @@ describe('patrocinadores — exibição', () => {
     expect(html).toContain('Patrocinador oficial');
     expect(html).toContain('N1 Skins');
     expect(html).toContain('Skins de Counter-Strike 2');
-    for (const text of ['Compra de skins', 'Upgrade e troca', 'Venda e encomendas', 'PIX', 'Criptomoedas', '@n1skins']) {
+    for (const text of [
+      'Venda suas Skins e receba na hora',
+      'Upgrade &amp; Troca de Inventário',
+      'Venda &amp; Encomendas Exclusivas',
+      'PIX Instantâneo',
+      'Criptomoedas',
+      '@n1skins',
+    ]) {
       expect(html).toContain(text);
     }
     expect(html).toMatch(/<img[^>]+src="[^"]*assets\/patrocinadores\/n1-skins-logo\.jpeg"[^>]+alt="Logo da N1 Skins"|<img[^>]+alt="Logo da N1 Skins"[^>]+src="[^"]*assets\/patrocinadores\/n1-skins-logo\.jpeg"/);

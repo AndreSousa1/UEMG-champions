@@ -3,9 +3,7 @@
  *
  * Este arquivo só contém tipos. Os valores editáveis ficam em:
  *  - src/config/tournament.config.ts  (nome, datas, horários, durações, logo, exibição)
- *  - src/data/teams.ts                (equipes)
- *  - src/data/matches.ts              (partidas, chaveamento e resultados)
- *  - src/data/streams.ts              (links das transmissões ao vivo)
+ *  - src/data/tournament.json         (equipes, partidas, resultados, patrocinadores e lives)
  */
 
 /* ------------------------------------------------------------------ */

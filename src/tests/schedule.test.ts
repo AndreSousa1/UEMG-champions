@@ -14,16 +14,16 @@ describe('agenda', () => {
     expect(zonedDateTimeToInstant('2026-10-12', '19:00', 'America/Sao_Paulo').toISOString()).toBe('2026-10-12T22:00:00.000Z');
   });
 
-  it('gera a programação inicial de 12 a 15 de outubro', () => {
+  it('gera a programação a partir do dia, da ordem e da duração de cada partida', () => {
     expect(timesFor()).toEqual({
       'PRE-01': '19:00',
-      'PRE-02': '20:00',
+      'PRE-02': '21:00',
       'PRE-03': '21:00',
       'PRE-04': '22:00',
-      'QF-01': '19:00',
+      'QF-01': '22:00',
       'QF-02': '20:00',
-      'QF-03': '21:00',
-      'QF-04': '22:00',
+      'QF-03': '20:00',
+      'QF-04': '19:00',
       'SF-01': '19:00',
       'SF-02': '20:30',
       FINAL: '19:00',
@@ -41,23 +41,23 @@ describe('agenda', () => {
 
   it('recalcula os horários quando a duração de uma modalidade muda', () => {
     const times = timesFor(withSchedule({ durationsMinutes: { MD1: 75, MD3: 90 } }));
-    expect(times['PRE-02']).toBe('20:15');
+    expect(times['QF-03']).toBe('20:15');
     expect(times['PRE-04']).toBe('22:45');
     expect(times['SF-02']).toBe('20:30');
   });
 
   it('aplica o intervalo entre partidas', () => {
     const times = timesFor(withSchedule({ gapMinutes: 15 }));
-    expect(times['PRE-02']).toBe('20:15');
+    expect(times['QF-03']).toBe('20:15');
     expect(times['SF-02']).toBe('20:45');
   });
 
-  it('usa o horário fixo de uma partida e recalcula as seguintes a partir dele', () => {
-    const list = withResults({ 'PRE-02': { fixedTime: '20:30' } });
+  it('usa o horário fixo de uma partida e recalcula as seguintes do mesmo dia a partir dele', () => {
+    const list = withResults({ 'QF-03': { fixedTime: '20:20' } });
     const times = timesFor(config, list);
     expect(times['PRE-01']).toBe('19:00');
-    expect(times['PRE-02']).toBe('20:30');
-    expect(times['PRE-03']).toBe('21:30');
+    expect(times['QF-03']).toBe('20:20');
+    expect(times['PRE-03']).toBe('21:20');
   });
 
   it('recalcula quando o horário inicial do dia muda', () => {

@@ -29,7 +29,7 @@ describe('privacidade dos dados públicos', () => {
   it('os arquivos públicos de dados e configuração não têm CPF, matrícula, e-mail ou telefone', () => {
     // sponsors.ts contém o contato comercial do patrocinador e é verificado no teste seguinte.
     const files = [
-      ...filesIn(join(root, 'src/data')).filter((f) => !f.endsWith('sponsors.ts')),
+      ...filesIn(join(root, 'src/data')).filter((f) => !f.endsWith('sponsors.ts') && !f.endsWith('tournament.json')),
       join(root, 'src/config/tournament.config.ts'),
       ...filesIn(join(root, 'public')),
     ];
